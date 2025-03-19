@@ -21,7 +21,7 @@ app.post('/api/users', async (req, res) => {
     await user.save();
     res.status(201).send(user);
   } catch (error) {
-    console.log('Error:', error.message); // Log the error for debugging
+    console.log('Error:', error.message);
     if (error.code === 11000) {
       res.status(400).send({ error: 'Email already exists' });
     } else if (error.message === 'Managers must have at least one skill') {
@@ -39,6 +39,34 @@ app.get('/api/users', async (req, res) => {
     res.status(200).send(users);
   } catch (error) {
     res.status(500).send({ error: 'Failed to fetch users', details: error.message });
+  }
+});
+
+// PUT route to update a user by email
+app.put('/api/users/:email', async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    // Apply updates manually
+    for (const key in req.body) {
+      user[key] = req.body[key];
+    }
+
+    // Save the document to trigger pre-save hook
+    await user.save();
+
+    res.status(200).send(user);
+  } catch (error) {
+    if (error.code === 11000) {
+      res.status(400).send({ error: 'Email already exists' });
+    } else if (error.message === 'Managers must have at least one skill') {
+      res.status(400).send({ error: error.message });
+    } else {
+      res.status(400).send({ error: 'Update failed', details: error.message });
+    }
   }
 });
 
