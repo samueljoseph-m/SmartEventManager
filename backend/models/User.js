@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// User Schema
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -22,7 +21,6 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     match: [/^\+?[\d\s-]{10,15}$/, 'Please fill a valid phone number'],
-    sparse: true, // Allows null/undefined without violating unique constraint
   },
   role: {
     type: String,
@@ -41,17 +39,31 @@ const userSchema = new mongoose.Schema({
     eventsManaged: { type: Number, default: 0 },
     rating: { type: Number, min: 0, max: 5, default: 0 },
   },
+  address: {
+    street: String,
+    city: String,
+    country: String,
+  },
+  lastLogin: {
+    type: Date,
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-// Add an index on email for faster lookups
+// Updated pre-save hook
+userSchema.pre('save', function(next) {
+  if (this.role === 'manager' && (!this.skills || this.skills.length === 0)) {
+    return next(new Error('Managers must have at least one skill'));
+  }
+  next();
+});
+
 userSchema.index({ email: 1 });
 
-// Create User Model
 const User = mongoose.model('User', userSchema);
 
-// Export the model
 module.exports = User;
