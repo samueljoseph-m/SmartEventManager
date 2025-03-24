@@ -1,42 +1,104 @@
-#root {
-  max-width: 1280px;
+body {
+  background-color: #fff; /* White background for the entire webpage */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Ensure the body takes up the full viewport height */
+}
+
+.container {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff; /* White background for the container */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure the container takes up available width */
+}
+
+h1, h2 {
   text-align: center;
+  color: #000000;
+  background-color: #00000000;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.create-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input, select {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e6e6e6; /* Light gray background for input boxes */
+  color: #000; /* Black text inside input boxes */
+  border: 1px solid #ccc; /* Add a subtle border for better visibility */
+  border-radius: 4px; /* Rounded corners for input boxes */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Style the placeholder text */
+input::placeholder,
+select::placeholder {
+  color: #333; /* Slightly lighter black for placeholder text */
+  opacity: 1; /* Ensure placeholder is fully visible (some browsers reduce opacity) */
 }
 
-.card {
-  padding: 2em;
+button {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #0056b3;
+}
+
+.user-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  width: 100%;
+  max-width: 500px;
+}
+
+.user-card button {
+  background-color: #dc3545;
+  padding: 5px 10px;
+}
+
+.user-card button:hover {
+  background-color: #c82333;
 }

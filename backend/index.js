@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const User = require('./models/User');
 const app = express();
 
@@ -7,6 +8,7 @@ mongoose.connect('mongodb://localhost:27017/smartEventManager')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
+app.use(cors()); // Enable CORS
 app.use(express.json());
 
 app.get('/', (req, res) => res.send('Backend running!'));
