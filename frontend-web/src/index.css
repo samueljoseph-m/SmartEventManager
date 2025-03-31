@@ -1,0 +1,45 @@
+/* Import Tailwind base styles (resets, etc.) */
+@tailwind base;
+
+/* Import Tailwind component styles (for custom components, if any) */
+@tailwind components;
+
+/* Import Tailwind utility classes (e.g., flex, p-4, bg-primary-500) */
+@tailwind utilities;
+
+/* Define global styles for the root element to ensure consistent typography and rendering */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none; /* Prevent browser from synthesizing bold/italic fonts */
+  text-rendering: optimizeLegibility; /* Improve text rendering for better readability */
+  -webkit-font-smoothing: antialiased; /* Smooth fonts on WebKit browsers (e.g., Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox for macOS */
+}
+
+/* Ensure the body takes up the full viewport height and has no default margin */
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Customize Toastify success notifications to match the app's theme */
+.Toastify__toast--success {
+  background-color: #10B981 !important; /* Green background for success */
+  color: white !important;
+  font-weight: 600;
+}
+
+/* Customize Toastify error notifications to match the app's theme */
+.Toastify__toast--error {
+  background-color: #EF4444 !important; /* Red background for errors */
+  color: white !important;
+  font-weight: 600;
+}
+
+/* Apply consistent styling to all Toastify toasts */
+.Toastify__toast {
+  border-radius: 8px !important; /* Rounded corners for toasts */
+  font-family: 'Inter', sans-serif; /* Match the app's font */
+}
